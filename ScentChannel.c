@@ -65,6 +65,7 @@ ow_errors_t scent_channel_set_state(scent_channel_t* this, bool open)
 			if (GPIO_SET(this->gpio, HIGH) == true)
 			{
 				/* Simple inc here but handle wrap at some point*/
+				this->state = true;
 				this->actuation_count++;
 				this->cartridge.actuation_count++;
 
@@ -87,8 +88,11 @@ ow_errors_t scent_channel_set_state(scent_channel_t* this, bool open)
 		/* close the channel */
 		if (GPIO_SET(this->gpio, LOW) == true)
 		{
+			this->state = true;
 			uint32_t new_level = 0; // Function to calculate new level of refill
 			this->cartridge.level = new_level;
+
+			/* Save updated info here */
 		}
 		else
 		{
@@ -109,6 +113,7 @@ ow_errors_t scent_channel_set_name(scent_channel_t* this, const char* name)
 		this->name[SCENT_CHANNEL_NAME_LENGTH - 1] = 0;
 		
 		/* Save updated info here */
+
 		return ERROR_OK;
 	}
 
