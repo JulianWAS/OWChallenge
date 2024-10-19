@@ -1,0 +1,8 @@
+
+*.vsidx
+
+.vs/OWChallenge/v17/
+
+OWChallenge/x64/Debug/
+
+x64/Debug/
